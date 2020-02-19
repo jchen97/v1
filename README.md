@@ -12,7 +12,7 @@
 * Pushing your changes to github, *git push origin master*
 
 ### Downloading changes
-1. git pull- *git pull origin \<branch name>*
+* git pull- *git pull origin \<branch name>*
  * Gets all the changes from the branch you're requesting, and attempts to merge them into your current branch
  
 ### Random commands
