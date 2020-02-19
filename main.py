@@ -9,6 +9,7 @@ if __name__ == '__main__':
     ticker_finder.initiate()
     headline_filter.initiate()
     # cnbc.fill()
+    # yoyoyo
 
     while True:
 
