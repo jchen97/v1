@@ -2,7 +2,7 @@
 
 
 ### Uploading changes
-1. git status -
+1. git status 
 * Shows you a list of your currently modified files and their relation to the master branch
 2. git add- *git add \<files>* 
  * Add each individual file you want to commit, or *git add .* for everything in the current status
