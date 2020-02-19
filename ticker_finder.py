@@ -16,11 +16,11 @@ tup1 = ()
 def initiate():
     global company_ticker
 
-    with open('finviz.csv', 'r') as stockfile:
+    with open('finviz1.csv', 'r') as stockfile:
         reader = csv.reader(stockfile)
         for row in reader:
-            ticker = ((4 - len(row[1])) * " ") + row[1]
-            company_name = cleanup(" " + row[2].lower())
+            ticker = ((4 - len(row[0])) * " ") + row[0]
+            company_name = cleanup(" " + row[1].lower())
 
             pair = {ticker: company_name}
             company_ticker.update(pair)
