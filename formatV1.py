@@ -36,5 +36,19 @@ def rss_printout(headlines, ticker, num):
     print("\n")
 
 
-def website_printout():
+def website_printout(headline, ticker, url):
+    dateTimeObj = datetime.now()
+    timeObj = dateTimeObj.time()
+
+    print(Color.BLACK + "-" * 99 + Color.END)
+    print("\n")
+    print("xxx, xx xxx 2020 xx:xx:xx GMT" + "//   " + Color.UNDERLINE + headline + Color.END
+          + "....." + url)
+    print("\n")
+    print(
+        timeObj.strftime("%H:%M:%S")
+        + "....." + Color.LTBLUE + ticker + Color.END
+        + "....." + Color.YELLOW + headline + Color.END
+    )
+    print("\n")
     pass

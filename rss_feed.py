@@ -7,7 +7,6 @@ import ticker_finder
 urls = {
     "https://www.ftc.gov/feeds/press-release.xml": "",
     "https://nypost.com/feed/": "",
-    "https://citronresearch.com/feed/": "",
     "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml": ""
 }
 
@@ -22,7 +21,7 @@ def ftcprl():
             ticker = ticker_finder.find_ticker(new)
 
             formatV1.rss_printout(headlines, ticker, 0)
-            print("\t" + headlines.entries[0].summary)
+            print("\t")
             urls["https://www.ftc.gov/feeds/press-release.xml"] = new
             winsound.Beep(2020, 1000)
     except IndexError:
@@ -43,23 +42,6 @@ def nypmain():
             print("\t" + headlines.entries[0].summary)
             urls["https://nypost.com/feed/"] = new
             winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\blip.wav', winsound.SND_FILENAME)
-    except IndexError:
-        pass
-
-
-def citron():
-    headlines = feedparser.parse(
-        "https://citronresearch.com/feed/")
-    try:
-        new = headlines.entries[0].title
-        if new not in urls.values():
-
-            ticker = ticker_finder.find_ticker(new)
-
-            formatV1.rss_printout(headlines, ticker, 0)
-            print("\t" + headlines.entries[0].summary)
-            urls["https://citronresearch.com/feed/"] = new
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\multigunshots.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
 

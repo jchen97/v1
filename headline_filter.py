@@ -24,7 +24,5 @@ def initiate():
     print(stock_offering)
 
 
-
 def filterit(headline, ticker):
-
     pass

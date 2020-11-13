@@ -10,7 +10,6 @@ tickers_sound = {}
 
 relevant_words = {}
 # ^^^ need to implement this
-tup1 = ()
 
 
 def initiate():
@@ -20,7 +19,7 @@ def initiate():
         reader = csv.reader(stockfile)
         for row in reader:
             ticker = ((4 - len(row[0])) * " ") + row[0]
-            company_name = cleanup(" " + row[1].lower())
+            company_name = cleanup(" " + row[1])
 
             pair = {ticker: company_name}
             company_ticker.update(pair)
@@ -33,37 +32,39 @@ def initiate():
 
 # cleans up string for company names
 def cleanup(name):
-    name = name.replace(" l.p.", "")
-    name = name.replace(" co.", "")
-    name = name.replace(" ltd", "")
+    name = name.replace(" L.P.", "")
+    name = name.replace(" Co.", "")
+    name = name.replace(" Ltd", "")
     name = name.replace(" plc", "")
-    name = name.replace(" llc", "")
-    name = name.replace(" etf", "")
-    name = name.replace(" technologies", "")
+    name = name.replace(" Plc", "")
+    name = name.replace(" PLC", "")
+    name = name.replace(" LLC", "")
+    name = name.replace(" ETF", "")
+    name = name.replace(" Technologies", "")
 
-    name = name.replace(" incorporated", "")
-    name = name.replace(" international corporation", "")
-    name = name.replace(" corporation", "")
+    name = name.replace(" Incorporated", "")
+    name = name.replace(" International Corporation", "")
+    name = name.replace(" Corporation", "")
 
-    name = name.replace(" holding corp.", "")
-    name = name.replace(" holdings", "")
-    name = name.replace(" holding", "")
+    name = name.replace(" Holding Corp.", "")
+    name = name.replace(" Holdings", "")
+    name = name.replace(" Holding", "")
 
-    name = name.replace(" public joint stock company", "")
-    name = name.replace(" public limited company", "")
-    name = name.replace(" limited company", "")
-    name = name.replace(" company", "")
-    name = name.replace(" limited", "")
+    name = name.replace(" Public Joint Stock Company", "")
+    name = name.replace(" Public Limited Company", "")
+    name = name.replace(" Limited Company", "")
+    name = name.replace(" Company", "")
+    name = name.replace(" Limited", "")
     name = name.replace(",", "")
     name = name.replace(".", "")
-    name = name.replace(" inc", "")
-    name = name.replace("the ", "")
+    name = name.replace(" Inc", "")
+    name = name.replace("The ", "")
     return name
 
 
 def find_ticker(headline):
     for key, value in company_ticker.items():
         # print(key, value)
-        if value in (" " + headline.lower()):
+        if value in (" " + headline):
             return key
     return "----"

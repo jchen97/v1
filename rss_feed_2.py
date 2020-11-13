@@ -7,8 +7,10 @@ import ticker_finder
 urls = {
     "https://www.cnet.com/rss/news/": "",
     "https://www.statnews.com/category/adams-take/feed/": "",
+    "https://www.statnews.com/feed/": "",
     "http://rss.cnn.com/rss/cnn_health.rss": "",
-    "https://developer.uspto.gov/ptab-feed/notifications.rss": ""
+    "https://developer.uspto.gov/ptab-feed/notifications.rss": "",
+    "https://edis.usitc.gov/external/rss/render.rss/?criteria=CRITERIONINVDEL:4788:PHASE:Violation:CRITERIONANOTIFY:true": ""
 }
 
 
@@ -18,7 +20,6 @@ def cnetNews():
     try:
         new = headlines.entries[0].title
         if new not in urls.values():
-
             ticker = ticker_finder.find_ticker(new)
 
             # Detects relevant keywords. Returns a string that may or may not be modified>
@@ -38,7 +39,6 @@ def feuerstein():
     try:
         new = headlines.entries[0].title
         if new not in urls.values():
-
             ticker = ticker_finder.find_ticker(new)
 
             # Detects relevant keywords. Returns a string that may or may not be modified>
@@ -52,13 +52,31 @@ def feuerstein():
         pass
 
 
+def statnews():
+    headlines = feedparser.parse(
+        "https://www.statnews.com/feed/")
+    try:
+        new = headlines.entries[0].title
+        if new not in urls.values():
+            ticker = ticker_finder.find_ticker(new)
+
+            # Detects relevant keywords. Returns a string that may or may not be modified>
+            # new = keyword_search.detect(new)
+
+            formatV1.rss_printout(headlines, ticker, 0)
+            print("\t" + headlines.entries[0].summary)
+            urls["https://www.statnews.com/feed/"] = new
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\chewy_roar.wav', winsound.SND_FILENAME)
+    except IndexError:
+        pass
+
+
 def cnnhealth():
     headlines = feedparser.parse(
         "http://rss.cnn.com/rss/cnn_health.rss")
     try:
         new = headlines.entries[0].title
         if new not in urls.values():
-
             ticker = ticker_finder.find_ticker(new)
 
             # Detects relevant keywords. Returns a string that may or may not be modified>
@@ -78,8 +96,9 @@ def ptab():
     try:
         new = headlines.entries[0].title
         if new not in urls.values():
-
             ticker = ticker_finder.find_ticker(headlines.entries[0].author)
+            search1 = "PGR2019-00048"
+            search2 = "EMPTY"
 
             # Detects relevant keywords. Returns a string that may or may not be modified>
             # new = keyword_search.detect(new)
@@ -88,6 +107,27 @@ def ptab():
             print("\t" + Color.YELLOW + headlines.entries[0].author + Color.END)
             print("\t" + headlines.entries[0].summary)
             urls["https://developer.uspto.gov/ptab-feed/notifications.rss"] = new
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\Twitter.wav', winsound.SND_FILENAME)
+            if (search1 in headlines.entries[0].title) or (search2 in headlines.entries[0].title):
+                print("CORT")
+                winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\alarm_beep.wav', winsound.SND_FILENAME)
+    except IndexError:
+        pass
+
+
+def itc1():
+    headlines = feedparser.parse(
+        "https://edis.usitc.gov/external/rss/render.rss/?criteria=CRITERIONINVDEL:4788:PHASE:Violation:CRITERIONANOTIFY:true")
+    try:
+        new = headlines.entries[0].title
+        if new not in urls.values():
+            ticker = ticker_finder.find_ticker(new)
+
+            # Detects relevant keywords. Returns a string that may or may not be modified>
+            # new = keyword_search.detect(new)
+
+            formatV1.rss_printout(headlines, ticker, 0)
+            print("\t" + headlines.entries[0].summary)
+            urls["https://edis.usitc.gov/external/rss/render.rss/?criteria=CRITERIONINVDEL:4788:PHASE:Violation:CRITERIONANOTIFY:true"] = new
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\buzzer_SHORT', winsound.SND_FILENAME)
     except IndexError:
         pass

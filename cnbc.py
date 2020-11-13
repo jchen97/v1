@@ -55,7 +55,7 @@ def cnbcMain():
             articles[count] = new
             count += 1
             print(count)
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\Twitter.wav', winsound.SND_FILENAME)
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\cnbcchime.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
 
@@ -78,7 +78,7 @@ def cnbcUS():
             articles[count] = new
             count += 1
             print(count)
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\Twitter.wav', winsound.SND_FILENAME)
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\cnbcchime.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
 
@@ -101,7 +101,7 @@ def cnbcEU():
             articles[count] = new
             count += 1
             print(count)
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\Twitter.wav', winsound.SND_FILENAME)
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\cnbcchime.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
 
@@ -124,6 +124,6 @@ def cnbcAS():
             articles[count] = new
             count += 1
             print(count)
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\Twitter.wav', winsound.SND_FILENAME)
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\cnbcchime.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
