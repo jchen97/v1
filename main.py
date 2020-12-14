@@ -40,9 +40,11 @@ if __name__ == '__main__':
 
         # vergex = multiprocessing.Process(target=verge.verge())
         # ^too slow now! tweety faster
+        techcrunchx = multiprocessing.Process(target=rss_feed.techcrunch())
 
         citronx = multiprocessing.Process(target=citron.citron(session1))
         # hindenburgx = multiprocessing.Process(target=hindenburg.hindenburg())
+        zerotvx = multiprocessing.Process(target=rss_feed.zerotv())
 
         # health
         # cnnhealth = multiprocessing.Process(target=rss_feed_2.cnnhealth())
@@ -92,9 +94,11 @@ if __name__ == '__main__':
         # theinfox.start()
         # info_articlesx.start()
         # cnetNewsx.start()
+        techcrunchx.start()
 
         citronx.start()
         # hindenburgx.start()
+        zerotvx.start()
 
         nytusx.start()
         nytbusx.start()

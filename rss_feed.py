@@ -7,7 +7,9 @@ import ticker_finder
 urls = {
     "https://www.ftc.gov/feeds/press-release.xml": "",
     "https://nypost.com/feed/": "",
-    "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml": ""
+    "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml": "",
+    "https://www.zer0es.tv/category/big-announcements/feed/": "",
+    "https://techcrunch.com/feed/": ""
 }
 
 
@@ -59,6 +61,40 @@ def fdaprl():
             print("\t" + headlines.entries[0].summary)
             urls["https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml"] = new
             winsound.Beep(1997, 1000)
+    except IndexError:
+        pass
+
+
+def zerotv():
+    headlines = feedparser.parse(
+        "https://www.zer0es.tv/category/big-announcements/feed/")
+    try:
+        new = headlines.entries[0].title
+        if new not in urls.values():
+
+            ticker = ticker_finder.find_ticker(new)
+
+            formatV1.rss_printout(headlines, ticker, 0)
+            print("\t" + headlines.entries[0].summary)
+            urls["https://www.zer0es.tv/category/big-announcements/feed/"] = new
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\gun_44mag_11.wav', winsound.SND_FILENAME)
+    except IndexError:
+        pass
+
+
+def techcrunch():
+    headlines = feedparser.parse(
+        "https://techcrunch.com/feed/")
+    try:
+        new = headlines.entries[0].title
+        if new not in urls.values():
+
+            ticker = ticker_finder.find_ticker(new)
+
+            formatV1.rss_printout(headlines, ticker, 0)
+            print("\t" + headlines.entries[0].summary)
+            urls["https://techcrunch.com/feed/"] = new
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\electricshock.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
 

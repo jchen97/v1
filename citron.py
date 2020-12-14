@@ -4,6 +4,7 @@ import random
 import formatV1
 import winsound
 import ticker_finder
+from datetime import datetime
 
 articles = {}
 count = 0
@@ -34,24 +35,38 @@ def citron(session):
         r.status_code = "Connection refused"
 
     soup = BeautifulSoup(r.content, 'html.parser')
-    try:
-        citronTitle = soup.find_all('h2')[1].get_text()
-    except IndexError:
-        citronTitle = soup.find_all('h2')[0].get_text()
 
     try:
-        citronTitle = soup.find_all('h2')[2].get_text()
+        citronTitle0 = soup.find_all('h2')[0].get_text()
     except IndexError:
-        citronTitle = soup.find_all('h2')[0].get_text()
+        citronTitle0 = soup.find_all('h2')[0].get_text()
+
+    try:
+        citronTitle1 = soup.find_all('h2')[1].get_text()
+    except IndexError:
+        citronTitle1 = soup.find_all('h2')[0].get_text()
+
+    try:
+        citronTitle2 = soup.find_all('h2')[2].get_text()
+    except IndexError:
+        citronTitle2 = soup.find_all('h2')[0].get_text()
     # prev = soup.find_all('h2')[1].get_text()
     # next = soup.find_all('h2')[2].get_text()
 
-    if citronTitle not in headlines:
-        headlines.append(citronTitle)
-        ticker = ticker_finder.find_ticker(citronTitle)
-        formatV1.website_printout(citronTitle, ticker, url)
-        # print(prev)
-        # print(next)
+    if citronTitle0 not in headlines:
+        dateTimeObj = datetime.now()
+        timeObj = dateTimeObj.time()
+        headlines.append(citronTitle0)
+        ticker = ticker_finder.find_ticker(citronTitle0)
+        print("-" * 99)
+        print()
+        print()
+        print(timeObj.strftime("%H:%M:%S") + "     CITRON")
+        print("\t")
+        print(ticker)
+        print(citronTitle0)
+        print(citronTitle1)
+        print(citronTitle2)
         print("\t")
         winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\multigunshots.wav', winsound.SND_FILENAME)
 

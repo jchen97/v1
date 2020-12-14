@@ -97,7 +97,7 @@ def ptab():
         new = headlines.entries[0].title
         if new not in urls.values():
             ticker = ticker_finder.find_ticker(headlines.entries[0].author)
-            search1 = "PGR2019-00048"
+            search1 = "EMPTY"
             search2 = "EMPTY"
 
             # Detects relevant keywords. Returns a string that may or may not be modified>
