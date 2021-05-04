@@ -3,12 +3,14 @@ import formatV1
 from formatV1 import Color
 import winsound
 import ticker_finder
+import headline_filter
 
 urls = {
     "https://www.ftc.gov/feeds/press-release.xml": "",
     "https://nypost.com/feed/": "",
     "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml": "",
     "https://www.zer0es.tv/category/big-announcements/feed/": "",
+    "https://insideevs.com/rss/news/all/": "",
     "https://techcrunch.com/feed/": ""
 }
 
@@ -38,12 +40,12 @@ def nypmain():
         if new not in urls.values():
 
             ticker = ticker_finder.find_ticker(new)
-
-            formatV1.rss_printout(headlines, ticker, 0)
-            print("\t" + Color.YELLOW + headlines.entries[0].author + Color.END)
-            print("\t" + headlines.entries[0].summary)
-            urls["https://nypost.com/feed/"] = new
-            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\blip.wav', winsound.SND_FILENAME)
+            if headline_filter.filterit(new, ticker):
+                formatV1.rss_printout(headlines, ticker, 0)
+                print("\t" + Color.YELLOW + headlines.entries[0].author + Color.END)
+                print("\t" + headlines.entries[0].summary)
+                urls["https://nypost.com/feed/"] = new
+                # winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\blip.wav', winsound.SND_FILENAME)
     except IndexError:
         pass
 
@@ -82,6 +84,23 @@ def zerotv():
         pass
 
 
+def insideev():
+    headlines = feedparser.parse(
+        "https://insideevs.com/rss/news/all/")
+    try:
+        new = headlines.entries[0].title
+        if new not in urls.values():
+
+            ticker = ticker_finder.find_ticker(new)
+
+            formatV1.rss_printout(headlines, ticker, 0)
+            print("\t" + headlines.entries[0].summary)
+            urls["https://insideevs.com/rss/news/all/"] = new
+            winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\electricshock.wav', winsound.SND_FILENAME)
+    except IndexError:
+        pass
+
+
 def techcrunch():
     headlines = feedparser.parse(
         "https://techcrunch.com/feed/")
@@ -92,7 +111,7 @@ def techcrunch():
             ticker = ticker_finder.find_ticker(new)
 
             formatV1.rss_printout(headlines, ticker, 0)
-            print("\t" + headlines.entries[0].summary)
+
             urls["https://techcrunch.com/feed/"] = new
             winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\electricshock.wav', winsound.SND_FILENAME)
     except IndexError:
