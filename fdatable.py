@@ -1,9 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 import random
-import formatV1
 import winsound
-import ticker_finder
+
+articles = {}
+count = 0
 
 user_agent_list = [
     # Chrome
@@ -37,7 +38,13 @@ url = "https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=report.pa
 drugs = []
 
 
-def fdaTable():
+def sanitize(word):
+    sep = ' '
+    sanitized = word.split(sep, 1)[0]
+    return sanitized
+
+
+def fdaTable(targetDrug):
     user_agent = random.choice(user_agent_list)
     headers = {'User-Agent': user_agent}
     try:
@@ -51,21 +58,19 @@ def fdaTable():
     rows = table.findAll('tr')
 
     for row in rows:
-        columns = row.findAll('td')
-        count = 0
-        # thisIsNew = False
-        for column in columns:
-            cell = column.get_text()
-            # print(cell)
-            if (count == 0) & (cell not in drugs):
+        columns = row.findAll('td', limit=2)
+        for i in columns:
+            cell = (i.get_text())
+            cell = sanitize(cell)
+            # cell is current column in columns
+            if cell not in drugs:
                 drugs.append(cell)
-                if "Aubagio" in cell:
+                if targetDrug in cell:
+                    print(targetDrug)
                     print("-------------------------------------------------------------------------")
                     print("\t")
                     print("BIIB")
-                    print("\n")
-                    print(cell)
+                    print("\n\n")
                     winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\chewy_roar.wav', winsound.SND_FILENAME)
-            count = count + 1
-    print(drugs)
 
+fdaTable("Nivestym")

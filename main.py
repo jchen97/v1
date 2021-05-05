@@ -57,7 +57,7 @@ if __name__ == '__main__':
         # cnnhealth = multiprocessing.Process(target=rss_feed_2.cnnhealth())
         feuersteinx = multiprocessing.Process(target=rss_feed_2.feuerstein())
         statnewsx = multiprocessing.Process(target=rss_feed_2.statnews())
-        # fdatablex = multiprocessing.Process(target=fdatable.fdaTable())
+        fdatablex = multiprocessing.Process(target=fdatable.fdaTable())
 
         # nyt
         # nytusx = multiprocessing.Process(target=nytimes.nytus())
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         # cnnhealth.start()
         feuersteinx.start()
         statnewsx.start()
-        # fdatablex.start()
+        fdatablex.start()
 
         # vergex.start()
         # theinfox.start()

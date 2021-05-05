@@ -1,5 +1,4 @@
 import csv
-import newspaper
 
 good_news = set()
 bad_news = set()
