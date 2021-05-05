@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     session1 = requests.Session()
     session2 = requests.Session()
-    targetDrug = 'Nivestym'
+    targetDrug = 'Aducanumab'
     runthru = 0
 
     while True:

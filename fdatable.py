@@ -67,8 +67,8 @@ def fdaTable(targetDrug):
             if cell not in drugs:
                 drugs.append(cell)
                 if targetDrug in cell:
-                    print("\n"+targetDrug)
                     print("-------------------------------------------------------------------------")
+                    print("\n"+targetDrug)
                     print("\t")
                     print("BIIB")
                     print("\n\n")
