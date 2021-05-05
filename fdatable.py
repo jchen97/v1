@@ -40,6 +40,7 @@ drugs = []
 
 def sanitize(word):
     sep = ' '
+    #ignores everything after the first word
     sanitized = word.split(sep, 1)[0]
     return sanitized
 
@@ -66,11 +67,9 @@ def fdaTable(targetDrug):
             if cell not in drugs:
                 drugs.append(cell)
                 if targetDrug in cell:
-                    print(targetDrug)
+                    print("\n"+targetDrug)
                     print("-------------------------------------------------------------------------")
                     print("\t")
                     print("BIIB")
                     print("\n\n")
                     winsound.PlaySound(r'C:\Users\Trader\Documents\WavSounds\chewy_roar.wav', winsound.SND_FILENAME)
-
-fdaTable("Nivestym")

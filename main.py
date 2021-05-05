@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     session1 = requests.Session()
     session2 = requests.Session()
-
+    targetDrug = 'Nivestym'
     runthru = 0
 
     while True:
@@ -57,7 +57,7 @@ if __name__ == '__main__':
         # cnnhealth = multiprocessing.Process(target=rss_feed_2.cnnhealth())
         feuersteinx = multiprocessing.Process(target=rss_feed_2.feuerstein())
         statnewsx = multiprocessing.Process(target=rss_feed_2.statnews())
-        fdatablex = multiprocessing.Process(target=fdatable.fdaTable())
+        fdatablex = multiprocessing.Process(target=fdatable.fdaTable(targetDrug=targetDrug))
 
         # nyt
         # nytusx = multiprocessing.Process(target=nytimes.nytus())
